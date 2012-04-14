@@ -20,7 +20,7 @@ MG2MG.com
 Script Command: 
 python move.py MG2MG
 
-Output:
+Output Files:
 
 MG2MG_0.com
 MG2MG_1.com
