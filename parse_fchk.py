@@ -9,11 +9,14 @@ def isNaN(x):
 
 
 basename=sys.argv[1]
-imax = 15
+i = 0
 erg = open(basename+"_erg.txt","w+")
-for i in range(0,imax+1):
-	# create fchk files
+while True:
 	proc = "formchk %s_%i.chk %s_%i.fchk"%(basename,i,basename,i)
+	try:
+		open("%s_%i.chk"%(basename,i))
+	except IOError:
+		break
 	print proc
 	if (subprocess.call(proc,shell=True) != 0):
 		break
@@ -55,5 +58,6 @@ for i in range(0,imax+1):
 
 	erg.write("%i %.10e %.10e\n"%(i,orbs[electrons/2-1]-orbs[electrons/2],Ex)) 
 	#the homo/lumo orbitals are assumed to be at halfe the number of electrons
+	i+=1
 erg.close()
 	
