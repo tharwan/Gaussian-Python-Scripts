@@ -32,7 +32,7 @@ The script is build to work with Python 2.4.
 
 # parse_fchk.py #
 
-To extract certain values, lets say the electron orbitals energies, you need information stored in the .chk files of a calculation. To do this you first have to make sure your calculation is setup to save the checkpoint files. To get the values out of the checkpoint file you then have to convert the files via the formchk tool included in gaussian to get a formated checkpoint file. 
+To extract certain values, lets say the electron orbitals energies, you need information stored in the .chk files of a calculation. To do this you first have to make sure your calculation is setup to save the checkpoint files. To get the values out of the checkpoint file, which is in a binary format, you then have to convert the files via the formchk tool included in gaussian to get a formated checkpoint file (ASCI). 
 
 This is done by the script saving every .chk file as a formated .fchk file. Then the alpha orbital energies are extraced, as well as the number of atoms to determin the energy gap between the HOMO/LUMO orbitals. Furthermore the first excited state energy from the .log files are read in. Both values are then stored in a text file, together with the number of the file from which they were read.
 

@@ -53,8 +53,7 @@ for i in range(0,imax+1):
 	if isNaN(Ex):
 		print "Error, exitation state energy not found"
 
-	#homo/lumo ist grade bei der haelfte der electronen
 	erg.write("%i %.10e %.10e\n"%(i,orbs[electrons/2-1]-orbs[electrons/2],Ex)) 
-	
+	#the homo/lumo orbitals are assumed to be at halfe the number of electrons
 erg.close()
 	

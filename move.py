@@ -6,7 +6,7 @@ import math
 from copy import deepcopy
 
 def numbers(s):
-	# keine lust auf regex
+	# skip regex for now
 	ret=[0,0,0]
 	n=0
 	for part in s.split(" "):
@@ -25,11 +25,21 @@ def first_number(s):
 
 
 def add(input,pos,value,start,stop):
-	# leider gibt es kein numpy
+	# no numpy, sadly
 	ret = deepcopy(input)  # copy
 	for i in xrange(start,stop):
 		ret[i][pos]+=value
 	return ret
+
+### VARIABLES ###
+
+imax=15  # number of steps
+xyz = 2  # direction of the movement 0 for x, 1 for y, 2 for z  
+first_atom = 0 # first atom to move
+last_atom = lambda: len(pos0)/2 #last atom to move
+step_func = lambda: math.exp(i/10.0)-1 #called for every step
+
+### VARIABLES ###
 
 
 basename=sys.argv[1]
@@ -43,18 +53,18 @@ for line in orig:
 		pos.append(numbers(line))
 	if line.startswith("0 1"):
 		read = True
-# die positionen der atome werden in pos gespeichert
+# the position of the atoms is saved in pos
 
-pos0 = deepcopy(pos)  # ausgangspositionen
-imax=15  # Anzahl der Durchlaeufe
-ex_reg = re.compile("%chk=(\S+.chk)")
+pos0 = deepcopy(pos)  # start position
+ex_reg = re.compile("%chk=(\S+.chk)") #reg ex for checkpoint file
+
 for i in range(0,imax+1):
 	name = basename+"_"+str(i)+".com"
-	new = open(name,"w+")  # datei basename_i.com schreiben fuer i=0 keine verschiebung
+	new = open(name,"w+")
 	orig.seek(0)
 	n=0
 	write = False
-	for line in orig:  # alle zeilen aus der originaldatei uebernehmen
+	for line in orig:  # copy all lines from origina file
 		if line=="\n" and write:
 			write = False
 		if write:
@@ -66,9 +76,9 @@ for i in range(0,imax+1):
 			new.write(line)
 		if line.startswith("0 1"):
 			write = True
-	pos = add(pos0,2,math.exp(i/10.0)-1,0,len(pos0)/2)  # verschiebung der haelfte aller atome
-			       # Koordiante: x->0 y->1 z->2
-			         # Verschiebung in Angstroem
-			           # Atom von Position x
-			             # Bis Position y
+	if callable(first_atom):
+		first_atom = first_atom()
+	if callable(last_atom):
+		last_atom = last_atom()	
+	pos = add(pos0,xyz,step_func(),first_atom,last_atom)
 	system("bsub -q Batch24 \"cd %s; g09 %s \""%(os.path.dirname(os.path.realpath(__file__)),name)) #job erstellen
