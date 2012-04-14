@@ -13,7 +13,8 @@ There is no deeper understanding in the script of what a molecule is, the two mo
 To work properly the script is needs a "basename" for it‘s output files. It assumes that the basename is altough the name of the original input file. 
 
 ##Example:##
-```Input file: 
+```
+Input file: 
 MG2MG.com
 
 Script Command: 
@@ -39,7 +40,8 @@ To work properly the script is needs a "basename" for it‘s input files.
 
 
 ##Example:##
-```Script Command: 
+```
+Script Command: 
 python parse_fchk.py MG2MG
 
 Read Files: 
