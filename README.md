@@ -12,6 +12,8 @@ There is no deeper understanding in the script of what a molecule is, the two mo
 
 To work properly the script is needs a "basename" for it‘s output files. It assumes that the basename is altough the name of the original input file. 
 
+To alter the way the molecules are moved you must edit the variables in the script.
+
 ##Example:##
 ```
 Input file: 
