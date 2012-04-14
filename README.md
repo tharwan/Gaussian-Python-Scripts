@@ -4,7 +4,7 @@ Some Python Scripts for automating some tasks in gaussian, extracting and analyz
 
 # move.py #
 
-When given an input file with two molecules it "moves" one of the molecules in given steps an calculates the given gaussian calculations for every step. 
+When given an input file with two molecules it "moves" one of the molecules in given steps and calculates the given gaussian calculations for every step. 
 
 The "moveing" is done by creating a seperate gaussian input file for every step and then submitting it to gaussian. The submitting is done via commandline statement using lsf (bsub) for loadbalancing. 
 
@@ -62,5 +62,5 @@ MG2MG_2.fchk
 ...
 
 MG2MG_erg.txt
-``
+```
 
